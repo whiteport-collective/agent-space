@@ -1,5 +1,5 @@
 {
-  "name": "agent-space",
+  "name": "whiteport-agent-space",
   "version": "0.1.0",
   "description": "Multi-agent communication, knowledge capture, and work order coordination",
   "keywords": [
@@ -18,7 +18,8 @@
   "author": "Whiteport Collective",
   "main": "tools/cli/agent-space-cli.js",
   "bin": {
-    "agent-space": "tools/agent-space-wrapper.js"
+    "agent-space": "tools/agent-space-wrapper.js",
+    "whiteport-agent-space": "tools/agent-space-wrapper.js"
   },
   "files": [
     "tools/",
