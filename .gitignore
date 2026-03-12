@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.supabase/
+__pycache__/
+*.pyc
+.temp/
+poll-state.json
+sessions.json

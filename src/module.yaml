@@ -1,0 +1,88 @@
+code: agent-space
+name: "Agent Space"
+header: "Multi-agent communication, knowledge capture, and work order coordination"
+subheader: "Give your AI agents a shared space to message, learn, and collaborate"
+description: ""
+default_selected: false
+recommendedModules: []
+requiredModules: [core]
+
+space_name:
+  prompt: "What do you want to call your agent space?"
+  default: "Agent Space"
+  result: "{value}"
+
+supabase_project:
+  prompt: "Your Supabase project reference ID (from supabase.com/dashboard)"
+  default: ""
+  required: true
+  result: "{value}"
+
+embedding_provider:
+  prompt: "Which embedding provider would you like to use?"
+  default: "openrouter"
+  result: "{value}"
+  single-select:
+    - value: "openrouter"
+      label: "OpenRouter — text-embedding-3-small (recommended, low cost)"
+    - value: "none"
+      label: "None — messaging and work orders only, no semantic search"
+
+visual_embeddings:
+  prompt: "Enable visual similarity search for screenshots and design feedback?"
+  default: "no"
+  result: "{value}"
+  single-select:
+    - value: "yes"
+      label: "Yes — Voyage AI visual embeddings (requires VOYAGE_API_KEY)"
+    - value: "no"
+      label: "No — text-only knowledge capture"
+
+knowledge_tables:
+  prompt: "Which knowledge tables would you like to install?"
+  default: ["core"]
+  required: true
+  result: "{value}"
+  multi-select:
+    - value: "core"
+      label: "Core — Agent messaging, work orders, presence, text knowledge (always installed)"
+    - value: "test-results"
+      label: "Test Results — Test runs, coverage, regression tracking"
+    - value: "content-library"
+      label: "Content Library — Editorial style, brand voice, content patterns"
+  # Additional tables contributed by other modules:
+  # - WDS adds "design-knowledge" (visual feedback pairs, taste learning, component patterns)
+  # - Your module can add its own plugin migration in supabase/migrations/plugins/
+
+agent_platforms:
+  prompt: "Which AI platforms will your agents run on?"
+  default: ["claude-code"]
+  required: true
+  result: "{value}"
+  multi-select:
+    - value: "claude-code"
+      label: "Claude Code — Anthropic CLI agent"
+    - value: "codex"
+      label: "Codex — OpenAI coding agent"
+    - value: "gemini"
+      label: "Gemini — Google AI agent"
+    - value: "chatgpt"
+      label: "ChatGPT — OpenAI Custom Actions"
+    - value: "other"
+      label: "Other — HTTP API only"
+
+post-install-notes: |
+  Your {space_name} is ready to set up!
+
+  Next steps:
+  1. Run: ./setup.sh {supabase_project}
+  2. Set edge function secrets in Supabase Dashboard:
+     - OPENROUTER_API_KEY (if using embeddings)
+     - VOYAGE_API_KEY (if using visual search)
+  3. Copy .env.example to .env and fill in your Supabase credentials
+  4. Add the MCP server to your IDE config
+
+  Docs: https://github.com/whiteport-collective/agent-space
+  Issues: https://github.com/whiteport-collective/agent-space/issues
+
+  License: MIT

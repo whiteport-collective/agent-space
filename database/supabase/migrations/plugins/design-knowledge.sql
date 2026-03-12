@@ -1,0 +1,26 @@
+-- Design Knowledge Plugin
+-- Adds visual embeddings, feedback pairs, and taste learning
+-- to the core agent_space table.
+--
+-- Requires: 001_design_space_table.sql (core table must exist)
+--
+-- This plugin adds:
+-- - Visual embedding column (Voyage AI, 1024d)
+-- - Pattern type classification (baseline, inspiration, delta, rejected, approved)
+-- - Quality scoring
+-- - Feedback pair linking (before/after with designer reasoning)
+-- - Visual similarity index
+
+-- Note: In the current schema, these columns are included in the core table.
+-- This file documents the intent for future separation.
+-- When the core table is refactored to exclude visual columns by default,
+-- this migration will ALTER TABLE to add them.
+
+-- Future migration (not yet active):
+-- ALTER TABLE public.design_space ADD COLUMN IF NOT EXISTS visual_embedding vector(1024);
+-- ALTER TABLE public.design_space ADD COLUMN IF NOT EXISTS pattern_type text;
+-- ALTER TABLE public.design_space ADD COLUMN IF NOT EXISTS quality_score numeric;
+-- ALTER TABLE public.design_space ADD COLUMN IF NOT EXISTS pair_id uuid;
+-- CREATE INDEX IF NOT EXISTS idx_design_space_visual_embedding ON public.design_space
+--   USING ivfflat (visual_embedding vector_cosine_ops) WITH (lists = 100);
+-- CREATE INDEX IF NOT EXISTS idx_design_space_pair_id ON public.design_space (pair_id);

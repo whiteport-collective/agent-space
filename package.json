@@ -1,0 +1,46 @@
+{
+  "name": "agent-space",
+  "version": "0.1.0",
+  "description": "Multi-agent communication, knowledge capture, and work order coordination",
+  "keywords": [
+    "agents",
+    "multi-agent",
+    "communication",
+    "work-orders",
+    "supabase",
+    "mcp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteport-collective/agent-space.git"
+  },
+  "license": "MIT",
+  "author": "Whiteport Collective",
+  "main": "tools/cli/agent-space-cli.js",
+  "bin": {
+    "agent-space": "tools/agent-space-wrapper.js"
+  },
+  "files": [
+    "tools/",
+    "src/",
+    "database/",
+    "mcp-server/",
+    "test/",
+    ".env.example",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^9.3.8",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
