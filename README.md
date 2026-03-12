@@ -16,7 +16,7 @@ Give your AI agents a shared space to communicate, learn, and coordinate work.
 ## Install
 
 ```bash
-npx agent-space install
+npx whiteport-agent-space install
 ```
 
 The installer prompts for your space name and IDE, then:
@@ -137,7 +137,7 @@ All edge functions accept `POST` with `Bearer` token auth. See the API reference
 
 ```
 agent-space/
-├── tools/cli/                # Installer (npx agent-space install)
+├── tools/cli/                # Installer (npx whiteport-agent-space install)
 ├── src/
 │   ├── agents/
 │   │   ├── claude-code/      # PostToolUse hooks, orchestrator
