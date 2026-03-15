@@ -1,5 +1,5 @@
 // search-design-space: Semantic search across knowledge with filters
-// POST { query, category, project, designer, topics, components, limit, threshold }
+// POST { query, category, project, repo, designer, topics, components, limit, threshold }
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -40,7 +40,7 @@ serve(async (req) => {
 
   try {
     const {
-      query, category, project, designer, topics, components,
+      query, category, project, repo, designer, topics, components,
       limit = 10, threshold = 0.3,
     } = await req.json();
 
@@ -65,6 +65,7 @@ serve(async (req) => {
       filter_category: category || null,
       filter_project: project || null,
       filter_designer: designer || null,
+      filter_repo: repo || null,
     });
 
     if (error) throw error;

@@ -1,5 +1,5 @@
 // capture-design-space: Store design knowledge with semantic embedding
-// POST { content, category, project, designer, client, topics, components, source, source_file }
+// POST { content, category, project, repo, designer, client, topics, components, source, source_file }
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -40,7 +40,7 @@ serve(async (req) => {
 
   try {
     const {
-      content, category = "general", project, designer, client,
+      content, category = "general", project, repo, designer, client,
       topics = [], components = [], source, source_file,
     } = await req.json();
 
@@ -65,6 +65,7 @@ serve(async (req) => {
         content,
         category,
         project,
+        repo,
         designer,
         client,
         topics,
